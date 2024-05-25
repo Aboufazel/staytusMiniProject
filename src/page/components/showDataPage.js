@@ -1,7 +1,6 @@
-import {useGetFilms, useGetPeoples, useGetPlanets} from "../../servicesQueryHooks/servicesQueryHook";
+import {useGetFilms, useGetPlanets} from "../../servicesQueryHooks/servicesQueryHook";
 import LoadingComponents from "./loadingComponents";
 import {exportsPlantsCardData} from "../../filterFunction";
-import {Cake} from "iconsax-react";
 import PlantsCard from "./plantsCard";
 
 const ShowDataPage = () => {
