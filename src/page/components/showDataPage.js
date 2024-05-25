@@ -1,5 +1,8 @@
-import {useGetFilms, useGetPlanets} from "../../servicesQueryHooks/servicesQueryHook";
+import {useGetFilms, useGetPeoples, useGetPlanets} from "../../servicesQueryHooks/servicesQueryHook";
+import LoadingComponents from "./loadingComponents";
 import {exportsPlantsCardData} from "../../filterFunction";
+import {Cake} from "iconsax-react";
+import PlantsCard from "./plantsCard";
 
 const ShowDataPage = () => {
 
@@ -9,22 +12,31 @@ const ShowDataPage = () => {
         error} = useGetPlanets()
 
     const {data:filmsData  ,
-        isPending:filmIsPending ,
-        isError:filmIsError ,
-        error:filmError} = useGetFilms()
+        isPending:filmsIsPending ,
+        isError:filmsIsError ,
+        error:filmsError} = useGetFilms()
 
-    if ((isError) || filmIsError){
-        console.log(filmError)
+    if ((isError) || filmsIsError){
+        console.log(filmsError)
         console.log(error)
     }
 
-    console.log(data.data.results , 'plants data')
-    console.log(filmsData.data.results , 'film data')
-
     return(
-        <div className={'flex flex-row items-center bg-[#27272A] h-[90px] w-full rounded-[12px]'}>
+            <div className={'flex flex-col w-full gap-[20px]'}>
+                <h2>plants show data card</h2>
+                {
+                    (isPending || filmsIsPending) ?
+                        <LoadingComponents/>
+                        :
+                    exportsPlantsCardData(data?.data?.results)?.map((info , index) => (
+                        <PlantsCard key={'plants-card' + index}
+                                    index={index}
+                                    filmData={filmsData?.data?.results}
+                                    info={info}/>
+                    ))
+                }
+            </div>
 
-        </div>
     )
 }
 

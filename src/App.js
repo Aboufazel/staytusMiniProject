@@ -6,7 +6,7 @@ function App() {
     const queryClient = new QueryClient()
     return (
         <QueryClientProvider client={queryClient}>
-            <div className={'w-screen h-screen overflow-y-hidden p-[16px] overflow-x-hidden'}>
+            <div className={'w-screen h-screen overflow-y-auto p-[16px] overflow-x-hidden'}>
                 <ShowDataPage/>
             </div>
         </QueryClientProvider>

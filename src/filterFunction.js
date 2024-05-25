@@ -1,7 +1,4 @@
-export const exportsPlantsCardData = (plantsData , filmsData)=>{
-    let filmArray = []
-
-
-    console.log(plantsData)
-    console.log(filmsData)
+export const exportsPlantsCardData = (plantsData)=>{
+     return plantsData?.filter(filterData=>(filterData?.films?.length !== 0)
+                               && (filterData?.residents?.length > 1))
 }
