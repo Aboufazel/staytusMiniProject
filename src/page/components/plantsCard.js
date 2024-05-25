@@ -23,8 +23,8 @@ const PlantsCard = ({info , filmData , index}) => {
                         </div>
                         <h4 className={'text-white text-sm font-bold'}>{info.name}</h4>
                     </div>
-                    <div className={'flex flex-row justify-end w-1/2'}>
-
+                    <div className={'text-gray-500 flex flex-row justify-end w-1/2'}>
+                        {info?.climate}
                     </div>
                 </div>
                 <div onClick={()=>handleOpenList(index)}
@@ -46,7 +46,7 @@ const PlantsCard = ({info , filmData , index}) => {
                     <ul>
                         {
                             filmData.filter(data => data.planets.includes(info?.url)).map((filmInfo, index) => (
-                                <li className={'text-[#CCAF61] text-sm my-2'}>
+                                <li key={'film-list-title-and-desc' + index} className={'text-[#CCAF61] text-sm my-2'}>
                                     <span className={'text-white font-medium mr-2 text-sm'}>Name:</span>
                                     {filmInfo.title}
                                     <span className={'block mt-2'}>Descriptions:</span>
