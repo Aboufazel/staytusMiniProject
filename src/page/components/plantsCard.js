@@ -4,9 +4,11 @@ import {ArrowDown2, Cake} from "iconsax-react";
 const PlantsCard = ({info , filmData , index}) => {
     const [openList , setOpenList] = React.useState(-1);
     const handleOpenList = (value) => setOpenList(openList === value ? '' : value);
+
     return (
         <React.Fragment>
-            <div className={`flex flex-col justify-center 
+            <div onClick={()=>handleOpenList(index)}
+                 className={`flex flex-col justify-center cursor-pointer 
                                            bg-[#27272A] gap-[6px] py-[12px] px-[12px]
                                             w-full rounded-[12px]`}>
                 <div className={'flex flex-row items-center w-full'}>
@@ -27,8 +29,8 @@ const PlantsCard = ({info , filmData , index}) => {
                         {info?.climate}
                     </div>
                 </div>
-                <div onClick={()=>handleOpenList(index)}
-                     className={'flex flex-row cursor-pointer items-center w-full'}>
+                <div
+                     className={'flex flex-row items-center w-full'}>
                     <span className={'font-light text-sm text-white w-1/2'}>show plants film list</span>
                     <span
                         className={`flex flex-row 
@@ -36,7 +38,7 @@ const PlantsCard = ({info , filmData , index}) => {
                        
                         font-light text-end w-1/2`}>
                         <ArrowDown2 size={'14'}
-                                    className={`transition-all duration-700 
+                                    className={`transition-all duration-500 
                                             ${(openList === index) ? 'rotate-180' : ''}`}
                                     color={'#ffffff'}/>
                     </span>
@@ -45,8 +47,10 @@ const PlantsCard = ({info , filmData , index}) => {
                     openList === index &&
                     <ul>
                         {
-                            filmData.filter(data => data.planets.includes(info?.url)).map((filmInfo, index) => (
-                                <li key={'film-list-title-and-desc' + index} className={'text-[#CCAF61] text-sm my-2'}>
+                            filmData.filter(data => data.planets.includes(info?.url)).filter(plants=>plants.species.length !==0).map((filmInfo, index) => (
+                                <li key={'film-list-title-and-desc' + index}
+                                    className={`text-[#CCAF61] border-b 
+                                    border-b-amber-100 pb-3 text-sm my-2`}>
                                     <span className={'text-white font-medium mr-2 text-sm'}>Name:</span>
                                     {filmInfo.title}
                                     <span className={'block mt-2'}>Descriptions:</span>
